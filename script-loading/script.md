@@ -1,6 +1,6 @@
 # Script loading
 
-There's more than one way to load a script.  There's "old faithful", just putting the script tag just before the closing tag of the body, and while that can still be fine in a variety of cases, there's a few new ways to load scripts that have become available in the last few years.  The async and defer attributes for the script tag give us new options in how to load our scripts, which can change the flow of how the browser parses our resources.
+There's more than one way to load a script.  For years we've been told to just put your script tags just before the end of the HTML body.  There are two HTML5 attributes for the script tag that give us new ways ways to load scripts that have become available in the last few years.  The async and defer attributes for the script tag give us new options in how to load our scripts, which can change the flow of how the browser parses our resources.
 
 In this lesson we'll cover:
 * How the browser parses the HTML
@@ -63,7 +63,7 @@ Now that both scripts are deferred, we're downloading them in parallel, but eval
 Just as expected, we get our parrot!
 
 [[Back to presentation]]
-Async is acceptable for modularized scripts that don't depend on any other scripts, but it has a number of drawbacks.  As we just saw, async can introduce bugs if the load order of your scripts is important.  Async, because scripts are evaluated as the page is loading, can lead to a more jagged.  As a rule of thumb, use async for small scripts that need to be executed as quickly as possible, and use defer for everything else.
+So what does this tell us?  Async is acceptable for modularized scripts that don't depend on any other scripts, but it has a number of drawbacks.  As we just saw, async can introduce bugs if the load order of your scripts is important.  Furthermore, because async scripts run as the page is loading & rendering, using many large async scripts can lead to a more herky jerky loading experience, as the browser's main thread has to repeatedly stop rendering, and start evaluating our JS.  As a rule of thumb, use async for small scripts that need to be executed as quickly as possible, and use defer for everything else.
 
 ## Resources
 * HTML parsing: https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/

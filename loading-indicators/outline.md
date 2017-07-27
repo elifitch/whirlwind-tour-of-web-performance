@@ -1,4 +1,5 @@
 # Loading Indicators
+See how long the first one is to see if you need to cut this
 
 ## Intro
 Loading indicators are important because they give users confidence that their action was received and we're loading content.  They can also give you a way to get users into pixels quickly, while we work on asynchronously loading content and other assets for them.
