@@ -1,0 +1,22 @@
+{
+  "name": "whirlwind-tour-of-web-performance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elifitch/whirlwind-tour-of-web-performance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elifitch/whirlwind-tour-of-web-performance/issues"
+  },
+  "homepage": "https://github.com/elifitch/whirlwind-tour-of-web-performance#readme",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}

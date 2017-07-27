@@ -1,0 +1,11 @@
+.magical-alert-button {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    font-family: "Pinopolis-Regular";
+    font-size: 2em;
+}

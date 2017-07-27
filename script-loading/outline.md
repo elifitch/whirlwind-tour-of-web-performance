@@ -18,18 +18,18 @@ This barely scratches the surface of the complex processes & parser internals th
 Scripts can dramatically alter how the browser parses HTML, and thus how long it takes for content to reach your users' eyeballs.
 
 When the HTML parser reaches a `<script>` tag without the `async` or `defer` attributes, it grinds to a screeching halt, makes a request for that script (if it's external), that Javascript is then parsed, and then executed.  It's only when that script finishes execution that the DOM resumes parsing.  Lets see what that looks like when fetching and executing a large piece of javascript.
-[http://www.growingwiththeweb.com/images/2014/02/26/script.svg]
 
 [DEMO: traditional-request-large-js]
-Here I've put a large script in the head, and we can see as I refresh the page, that it requests the script, and executes it, triggering this alert message, and no HTML content has rendered at all. Nothing in the body of the page has made it to the screen, because a `<script>` tag in the head with no attributes will block parsing.
+Here I've put a large script in the head, and we can see as I refresh the page, that it requests the script, and executes it, triggering this alert message, and no HTML content has rendered at all. Nothing in the body of the page has made it to the screen, because a `<script>` tag in the head with no attributes will block parsing.  Only when the script finishes running does the browser continue on, parsing the rest of the HTML, and rendering it on the display.
 
 [DEMO: cut script from head and paste at end of body, and redo demo]
 This is why we commonly see scripts at the end of the body tag, because this lets the content get rendered first before worrying about javascript.  Rerunning our demo from earlier, we can see that the content loads, then the script is executed.
 
+[Go back to slide]
 This isn't ideal, because all this time we're spending parsing HTML can be used to download our javascript, and get our page to a state where its interactive sooner. Thats what the `async` and `defer` attributes available with HTML5 let us do.  They give us the ability to parallelize downloading our javascript while the HTML is parsed, but they're not the same thing. Lets look at the differences between the two.
 
 ## Async vs defer
-Both the Async and Defer attributes let us parse HTML and download javascript at the same time, where they differ is when the requested javascript is parsed and executed.
+Both the Async and Defer attributes help us solve this problem by empowering the browser to parse HTML and download javascript at the same time. Where these two attributes differ is when the requested javascript is parsed and executed.
 
 [async: http://www.growingwiththeweb.com/images/2014/02/26/script-async.svg]
 Async scripts are downloaded while the browser is parsing HTML, but as soon as the script is downloaded, the script will execute, regardless of whether the HTML has finished parsing.
