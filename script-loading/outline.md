@@ -35,20 +35,39 @@ Both the Async and Defer attributes help us solve this problem by empowering the
 Async scripts are downloaded while the browser is parsing HTML, but as soon as the script is downloaded, the script will execute, regardless of whether the HTML has finished parsing.
 
 [defer: http://www.growingwiththeweb.com/images/2014/02/26/script-defer.svg]
-Deferred scripts are also downloaded while the browser is parsing HTML, but unlike async scripts, they'll execute when the rest of the HTML document is done parsing.
+Deferred scripts are also downloaded while the browser is parsing HTML, but unlike async scripts, they'll execute when the rest of the HTML document is done parsing.  Deferred scripts also execute in the order they appear in the HTML, whereas Async scripts execute in the order of whatever finishes downloading first.
 
-It's important to note that the location of the `<script>` tag in the DOM matters.  If the script is in the traditional place at the bottom of the document just before the body's closing tag, you won't get much benefit in parallelizing HTML parsing and script downloading, because the download starts when the parser reaches the script tag, so if the script is near the end, the download will start when the HTML is almost done parsing, minimizing the benefits of these attributes.
+It's important to note that the location of the `<script>` tag in the DOM matters.  The key benefit of using async or defer is downloading your javascript earlier, while not blocking HTML parsing.  If the script is in the traditional place at the bottom of the document just before the body's closing tag, you won't get much benefit in parallelizing HTML parsing and script downloading, because the download starts when the parser reaches the script tag, so if the script is near the end, the download will start when the HTML is almost done parsing, minimizing the benefits of these attributes. Using async and defer, it's common to place your script tags in the `<head>`
 
-So when does it make sense to use each one?
-Async can be good for modularized scripts that don't depend on any other scripts or the DOM. but not for scripts that manipulate the DOM.  It's entirely possible that by the time your script is downloaded, and begins execution, the DOM element your script wants to manipulate hasn't been parsed yet, and it won't exist.
+So when does it make sense to use each one?  Let's answer that question with a quick demo.
 
-[DEMO: Async to deferred]
-Here's a page where we want to trigger an alert when clicking this button. The HTML contains the button, and the javascript attaches an event listener to the button that will fire when we click it, and display the alert.  Simple enough.  We see here in the console though that the button is undefined!  That's because by the time the script executed, and attempted to attach our event listener, the HTML that represents the button hadn't been parsed and added to the DOM yet.  When we change this script to deferred, we allow the entire HTML document to be parsed before executing scripts, so it works exactly as you'd expect.
+[DEMO: Async to defer]
+Here's a page where we want to add a party parrot to this page when we click this button.  This is a silly example, but it's really similar to situtaions where you have 3rd party javascript that is relied upon by your own javascript.
+[[show the HTML]]
+Here we have two scripts, both of them async, one is our "vendor JS" and this here is our custom JS.  This is a common use pattern for libraries like jQuery, Three.JS or the Greensock animation platform.
+[[show PP.js]]
+Our party parrot JS file just has some image data that gets assigned to the global variable `partyParrot`.
+[[show script.js]]
+Our custom JS uses that image data to make a party parrot image, and then attaches an event listener to show the parrot when the user clicks the main button on the page.
+[[Show browser]]
+So lets load the page.
+[[click the button]]
+Hmm, something is wrong here, that click *should* have started the party.  Lets look in the console to see if there are any errors.
+[[open console]]
+Looks like partyParrot isn't defined.
+[[Show HTML]]
+Async scripts are evaluated the moment they finish downloading, but they download in parallel.  That means that the two JS files started downloading one right after the other, but script.js, which is much smaller than party-parrot.js, finished downloading first. Script.js went to go get its image data from party-parrot, but it was undefined, because party-parrot.js hadn't finished downloading yet.
+[[Change both scripts to defer]]
+Now that both scripts are deferred, we're downloading them in parallel, but evaluating them in series.  So the party parrot data will be available to script.js and we can have some fun.
+[[Show browser, click button]]
+Just as expected, we get our parrot!
 
-As a rule of thumb, use async for small scripts that don't depend on the DOM, and use defer for everything else.
+[[Back to presentation]]
+Async is acceptable for modularized scripts that don't depend on any other scripts, but it has a number of drawbacks.  As we just saw, async can introduce bugs if the load order of your scripts is important.  Async, because scripts are evaluated as the page is loading, can lead to a more jagged.  As a rule of thumb, use async for small scripts that need to be executed as quickly as possible, and use defer for everything else.
 
 ## Resources
 * HTML parsing: https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 * script parsing: https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets
 * HTML parsing: http://arvindr21.github.io/howBrowserWorks/#/18
+* Defer > async: https://calendar.perfplanet.com/2016/prefer-defer-over-async/
 * async vs defer: http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
