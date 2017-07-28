@@ -1,0 +1,16 @@
+.main {
+	max-width: 1200px;
+	margin: 0 auto;
+	font-size: 2em;
+}
+p, img {
+	margin-bottom: 1em;
+}
+p:last-child, img:last-child {
+	margin-bottom: 0;
+}
+
+img:not([src]) {
+    visibility: hidden;
+    margin-bottom: 0;
+}
