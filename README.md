@@ -35,7 +35,7 @@
 - [x] Started
 - [ ] Outline
 - [ ] Presentation
-- [ ] Demos
+- [x] Demos
 - [ ] Script
 ### loading indicators
 - [x] Started

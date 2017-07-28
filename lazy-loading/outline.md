@@ -2,6 +2,7 @@
 
 ## Intro
 * What lazy loading is.
+* We're taught that the most important thing is to minimize the number of requests, but this isn't always the case. It can be useful to load content on demand, as needed, just before the user needs it.
 * What we'll cover: lazyloading images, lazyloading main content, infinite scrolling
 
 ## Lazyloading images

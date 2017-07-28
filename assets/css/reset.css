@@ -1,0 +1,29 @@
+/*
+// micro-reset.scss
+//
+// Based on the Meyer reset
+
+// Universal selector works great!
+// See: http://blogs.telerik.com/kendoui/posts/12-09-28/css_tip_star_selector_not_that_bad*/
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  list-style: none;
+  quotes: none;
+}
+
+footer, header, hgroup, menu, nav, section, small {
+  display: block;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;

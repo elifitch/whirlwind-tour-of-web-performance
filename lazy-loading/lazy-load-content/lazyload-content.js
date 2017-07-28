@@ -1,3 +1,6 @@
+const LAZYLOAD_CONTAINER = document.querySelectorAll('.js-lazyload')[0];
+const SPINNER = document.querySelectorAll('.js-spinner')[0];
+
 function simulateNetwork(fn, delay) {
 	return setTimeout(fn, delay);
 }
@@ -10,9 +13,9 @@ function lazyloadContent() {
 		const div = document.createElement('div');
 		div.innerHTML = htmlString;
 		const elements = div.childNodes;
-
+		SPINNER.parentNode.removeChild(SPINNER);
 		elements.forEach(function(el) {
-			document.body.appendChild(el)
+			LAZYLOAD_CONTAINER.appendChild(el)
 		});
 	})
 	.catch(function(error) {
