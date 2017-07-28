@@ -1,16 +1,19 @@
-# Lazy Loading
+# Lazy loading outline
 
 ## Intro
-Lazyloading is the art of asynchronously loading content, assets, or anything else under the sun, after your page has already loaded.  This allows us to get the user onto the page as quickly as possible, and lets us kick the can down the road with respect to ancillary stuff.  The most common use case for lazyloading is to asynchronously load media, like images, after the page loads its main text content.  However, we can also lazyload the entire page after showing a minimal loading screen, and use it to create UI patterns like infinite scrolling.
+* What lazy loading is.
+* What we'll cover: lazyloading images, lazyloading main content, infinite scrolling
 
-* Lazyloading images
-* Deferring all secondary content
-
-## Lazyload images
-Lazyloading images is in many cases the most impactful quick win applying this technique can give us. Images are often the largest portion of assets to be loaded on a page, so putting off loading them until a user is on the page can offer a significant speedup [[data here??]]. There are plenty of libraries that will do this for you, and many provide lots of helpful features on top of the basics.  For this example we're going to build our own lazyloading micro library from scratch to better understand what's happening under the hood.
-[ use and mention https://github.com/verlok/lazyload as a reference, especially  ]
+## Lazyloading images
+* Why lazyloading images is such a great & easy performance win
+* DEMO: how to implement from scratch
 
 ## Lazyloading main content
-We can expand take this technique much further, and instead of just lazyloading images, we can lazyload almost the entire page.  After doing some research, we can make sure that we only immediately load content our users tend to interact with first, and lazyload everything else.  This reduces initial page weight and gets users into what they need faster, everything else is secondary, and can be safely deferred.
-[[ demo where the main menu and hero image loads first, other product recommendations loads second ]]
+* Why is important: can identify content we know users engage with first, in this case a header menu, load that first, defer everything else
+* DEMO: Load menu and hero, lazyload product recommendations
 
+## Infinite scrolling (if we have time)
+* Talk about what infinite scrolling is, its plusses and minuses
+* Infinite scrolling is held out often as a separate thing, but it's really just lazyloading of a different kind
+* We're going to combine our techniques for loading images on scroll, and ancillary content on load. We're going to ajax in content on scroll.
+* DEMO
