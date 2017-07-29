@@ -2,10 +2,10 @@
 
 ## Todo
 ### Animation-Perf
-- [ ] Started
+- [x] Started
 - [ ] Outline
 - [ ] Presentation
-- [ ] Demos
+- [x] Demos
 - [ ] Script
 ### Code Minification
 - [ ] Started
@@ -20,10 +20,10 @@
 - [ ] Demos
 - [ ] Script
 ### Font-Loading
-- [ ] Started
-- [ ] Outline
+- [x] Started
+- [x] Outline
 - [ ] Presentation
-- [ ] Demos
+- [x] Demos
 - [ ] Script
 ### Image-optimization
 - [ ] Started
