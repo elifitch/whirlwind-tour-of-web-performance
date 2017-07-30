@@ -26,8 +26,8 @@
 - [x] Demos
 - [ ] Script
 ### Image-optimization
-- [ ] Started
-- [ ] Outline
+- [x] Started
+- [x] Outline
 - [ ] Presentation
 - [ ] Demos
 - [ ] Script

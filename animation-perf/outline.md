@@ -7,3 +7,13 @@
     - CSS wise, why focus only on transform and opacity
     - How to test animation performance
     - walk through diagnosing poor animation performance and cleaning it up
+
+## Browser rendering
+* Layout paint composite
+* SLIDE: do one that's like layout -> paint -> composite
+* SLIDE: do 3 one for each step, with bullet points and image of each
+
+
+
+////////////////////////////
+https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing
