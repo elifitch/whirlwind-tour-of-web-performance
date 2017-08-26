@@ -33,7 +33,7 @@
 - [ ] Script
 ### lazy - loading
 - [x] Started
-- [ ] Outline
+- [x] Outline
 - [ ] Presentation
 - [x] Demos
 - [ ] Script
@@ -50,8 +50,8 @@
 - [x] Demos
 - [x] Script
 ### svg icons
-- [ ] Started
-- [ ] Outline
+- [x] Started
+- [x] Outline
 - [ ] Presentation
 - [ ] Demos
 - [ ] Script

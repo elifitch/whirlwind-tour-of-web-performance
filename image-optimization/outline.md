@@ -22,7 +22,7 @@
 ## png
 * use when you need easy transparency
 * Prefer 8 bit to 24 bit unless you need smooth color gradiation
-* In browsers that support it, you can mask jpgs and look just like a png with less file size [Ref: https://css-tricks.com/transparent-jpg-svg/; http://quasimondo.com/ZorroSVG/; https://github.com/Quasimondo/ZorroJS/blob/master/zorro.js]
+* In browsers that support it, you can mask jpgs and look just like a png with less file size [https://codepen.io/shshaw/full/LVKEdv]
 * Recommended optimizer: imagemin-pngquant
 * SLIDE: show difference between 8bit and 24 bit png
 * SLIDE: just like my doge demo, show the kb savings in a line up
@@ -37,3 +37,7 @@
 ## webp
 * smaller than png, jpg, and gif, and supports transparency, best of all worlds!
 * Downside is it's only supported in chrome, opera, opera mini, android, and android chrome at the moment, but that may change, and you can polyfill it today
+
+
+## Resources
+* jpng stuff [Ref: https://css-tricks.com/transparent-jpg-svg/; http://quasimondo.com/ZorroSVG/; https://github.com/Quasimondo/ZorroJS/blob/master/zorro.js]

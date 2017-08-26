@@ -1,6 +1,6 @@
 # Script loading
 
-There's more than one way to load a script.  For years we've been told to just put your script tags just before the end of the HTML body.  There are two HTML5 attributes for the script tag that give us new ways ways to load scripts that have become available in the last few years.  The async and defer attributes for the script tag give us new options in how to load our scripts, which can change the flow of how the browser parses our resources.
+There's more than one way to load a script.  For years we've been told to just put your script tags just before the end of the HTML body.  But the async and defer attributes for the script tag give us new options in how to load our scripts, which can change the flow of how the browser parses our resources, and help us load our pages faster.
 
 In this lesson we'll cover:
 * How the browser parses the HTML
@@ -10,7 +10,9 @@ In this lesson we'll cover:
 ## How the browser parses HTML
 So what is parsing?  More broadly, parsing means turning a text document into a data structure that our code can put to use.  Specifically, parsing is the process by which browser turns your HTML, which is still just text at this point, into the DOM tree.  The DOM tree is eventually combined with CSS rules, turned into a render tree, which is then painted into pixels and delivered to your display.  As you can see then, just like how JavaScript is totally inert until it runs, HTML doesn't really become the medium that we know and love until it's parsed by the browser.
 
-The browser starts the parsing process at the top of the HTML document, and begins with a process called tokenization.  Tokenization is a complex algorithm, but in broad strokes, it takes a string of characters, and turns them into nodes by recognizing tag opening and tag closing characters.  The tokenizer passes tokens into the tree constructor, which defines what DOM element is represented by that token, like `<div>` or `<h1>` and is added to the DOM tree.  Those elements are also added to a stack of open elements, which is used to fix problems with nesting and unclosed tags.
+The browser starts the parsing process at the top of the HTML document, and begins with a process called tokenization.  Tokenization is a complex algorithm, but in broad strokes, it takes a string of characters, and turns them into nodes by recognizing tag opening and tag closing characters.
+[[slidde]]
+The tokenizer passes tokens into the tree constructor, which defines what DOM element is represented by that token, like `<div>` or `<h1>` and is added to the DOM tree.  Those elements are also added to a stack of open elements, which is used to fix problems with nesting and unclosed tags.
 
 This barely scratches the surface of the complex processes & parser internals that transform bits from a network response into the DOM, and on into pixels you can consume. While these nitty gritty details are very interesting and illuminating, they aren't immediately essential. If you want to learn more about how the browser consumes data and transforms that into interactive experiences, check out the resources in the course notes.
 
@@ -37,7 +39,7 @@ Async scripts are downloaded while the browser is parsing HTML, but as soon as t
 [defer: http://www.growingwiththeweb.com/images/2014/02/26/script-defer.svg]
 Deferred scripts are also downloaded while the browser is parsing HTML, but unlike async scripts, they'll execute when the rest of the HTML document is done parsing.  Deferred scripts also execute in the order they appear in the HTML, whereas Async scripts execute in the order of whatever finishes downloading first.
 
-It's important to note that the location of the `<script>` tag in the DOM matters.  The key benefit of using async or defer is downloading your javascript earlier, while not blocking HTML parsing.  If the script is in the traditional place at the bottom of the document just before the body's closing tag, you won't get much benefit in parallelizing HTML parsing and script downloading, because the download starts when the parser reaches the script tag, so if the script is near the end, the download will start when the HTML is almost done parsing, minimizing the benefits of these attributes. Using async and defer, it's common to place your script tags in the `<head>`
+It's important to note that the location of the `<script>` tag in the DOM matters.  The key benefit of using async or defer is downloading your javascript earlier, while not blocking HTML parsing.  If the script is in the traditional place at the bottom of the document just before the body's closing tag, you won't get much benefit in parallelizing HTML parsing and script downloading, because the download starts when the parser reaches the script tag, so if the script is near the end, the download will start when the HTML is almost done parsing, minimizing the benefits of these attributes. Using async and defer, it's recommended to place your script tags in the `<head>`
 
 So when does it make sense to use each one?  Let's answer that question with a quick demo.
 
@@ -63,7 +65,7 @@ Now that both scripts are deferred, we're downloading them in parallel, but eval
 Just as expected, we get our parrot!
 
 [[Back to presentation]]
-So what does this tell us?  Async is acceptable for modularized scripts that don't depend on any other scripts, but it has a number of drawbacks.  As we just saw, async can introduce bugs if the load order of your scripts is important.  Furthermore, because async scripts run as the page is loading & rendering, using many large async scripts can lead to a more herky jerky loading experience, as the browser's main thread has to repeatedly stop rendering, and start evaluating our JS.  As a rule of thumb, use async for small scripts that need to be executed as quickly as possible, and use defer for everything else.
+So what does this tell us?  Async is acceptable for modularized scripts that don't depend on any other scripts, but it has a number of drawbacks.  As we just saw, async can introduce bugs if the load order of your scripts is important, as it often is when combining a 3rd party JS with your own page specific JS.  Furthermore, because async scripts run as the page is loading & rendering, using many large async scripts can lead to a more herky jerky loading experience, as the browser's main thread has to repeatedly stop rendering, and start evaluating our JS.  As a rule of thumb, use async for small scripts that need to be executed as quickly as possible, and use defer for everything else.
 
 ## Resources
 * HTML parsing: https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
