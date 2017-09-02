@@ -49,6 +49,8 @@
 - [x] Presentation
 - [x] Demos
 - [x] Script
+- [x] Recorded
+- [ ] Resources sent
 ### svg icons
 - [x] Started
 - [x] Outline
