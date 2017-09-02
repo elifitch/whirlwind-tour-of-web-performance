@@ -27,7 +27,7 @@
 * Do it again with expert settings; just woff, NO woff2; check boxes for custom subsetting, do lower, upper and numbers, base64
 * Get that font css and paste it into the head of the bare demo
 * Get the unicode range from https://codepen.io/elifitch/pen/Ljqway
-* 
+* then basically fill out the page to match the sample
 
 ## Conclusion
 * This is definitely enough to get you started, but Zach Leatherman has tons of fascinating deeper details involved in this technique on his blog, and I urge you to check it out if you're curious.
