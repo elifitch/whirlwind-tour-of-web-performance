@@ -127,7 +127,7 @@ and here we're defining that rule.  We just need one last little optimization fo
     <link rel="preload" type="font/woff2" as="font" href="fonts/brandon-grotesque-bold-webfont.woff2">
 ```
 ]]]
-Here we're just putting in preload tags to give browsers that support preload a head start downloading our full fonts so they'll be ready ASAP.
+Here we're just putting in preload tags to give browsers that support preload a head start downloading our full fonts and our CSS so they'll be ready ASAP.  In a non-demo situation you might be more judicious about what to preload, but that's a story for another session.
 [[[
 `sessionStorage.criticalFoftFontsLoaded = true;`
 (above, right at the beginning)
@@ -142,8 +142,19 @@ We're just tucking a note away in our session storage that we've loaded webfonts
 [[[IN BROWSER]]]
 Okay looking good, looking normal, lets run a performance audit.
 [[[RUN AUDIT]]]
-Well, well that's a good deal faster than before!  We've shaved down [[[\\]]] seconds, which is impressive on its own, but that advantage grows as the site grows in size and complexity, so in the real world it's likely to be even better than that.  *Critically*, there's no FOIT, no FOUT, just a fast, buttery smooth experience.  Just one last thing, for the system font crowd, lets delete all this stuff out of the head, and comment out the CSS to see how much faster it would be to have no fonts at all.
+Well, well that's a good deal faster than before!  We've shaved down [[[\\]]] seconds, which is impressive on its own, but that advantage grows as the site grows in size and complexity, so in the real world it's likely to be even better than that.  *Critically*, there's no FOIT, no FOUT, just a fast, buttery smooth experience.
+
+Just one last thing, for the system font crowd, lets delete all this stuff out of the head, and comment out the CSS to see how much faster it would be to have no fonts at all.
 [[[DELETE/COMMENT THE SHIT]]]
+Okay we can see the fonts are gone, lets run an audit and see the difference between Critical FOFT and no fonts at all
+[[[RUN AUDIT]]]
+Okay, so it is a little faster, but a really tiny amount.  In a page with more resources that's a little more complex than this demo, that difference becomes even less significant.  This method of loading fonts really does give you the option to use webfonts at a very small performance penalty, with a smooth loading experience to boot.  With this tweaked take on Critical FOFT you really can have your cake and eat it too.
+
+
+
+
+
+
 
 
 
