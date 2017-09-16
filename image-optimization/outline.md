@@ -46,4 +46,5 @@
 ## Resources
 * jpng stuff [Ref: https://css-tricks.com/transparent-jpg-svg/; http://quasimondo.com/ZorroSVG/; https://github.com/Quasimondo/ZorroJS/blob/master/zorro.js]
 * Average image weight: https://www.soasta.com/blog/page-bloat-average-web-page-2-mb/
+* average page https://speedcurve.com/blog/web-performance-page-bloat/
 * Great perf stuff in general, lots of great insights on images: https://medium.com/@fox/talk-the-state-of-the-web-3e12f8e413b3
