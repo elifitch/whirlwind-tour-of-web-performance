@@ -45,11 +45,11 @@ p:last-child, img:last-child {
     transition: all 0.2s;
     color: #333;
 }
-.nav-toggle:hover {
+/*.nav-toggle:hover {
   background-color: #79B6FC;
   color: #fff;
   cursor: pointer;
-}
+}*/
 .nav-toggle:focus {
   outline: none;
 }
@@ -82,6 +82,6 @@ p:last-child, img:last-child {
 }
 
 .off-canvas-open .main {
-  left: 400px;
-  /*transform: translate3d(400px, 0, 0);*/
+  /*left: 400px;*/
+  transform: translate3d(400px, 0, 0);
 }

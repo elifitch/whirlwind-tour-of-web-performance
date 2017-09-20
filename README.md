@@ -3,46 +3,60 @@
 ## Todo
 ### Animation-Perf
 - [x] Started
-- [ ] Outline
+- [x] Outline
 - [ ] Presentation
 - [x] Demos
 - [ ] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### Code Minification
 - [ ] Started
 - [ ] Outline
 - [ ] Presentation
 - [ ] Demos
 - [ ] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### Critical Rendering
 - [ ] Started
 - [ ] Outline
 - [ ] Presentation
 - [ ] Demos
 - [ ] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### Font-Loading
 - [x] Started
 - [x] Outline
-- [ ] Presentation
+- [x] Presentation
 - [x] Demos
-- [ ] Script
+- [x] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### Image-optimization
 - [x] Started
 - [x] Outline
-- [ ] Presentation
-- [ ] Demos
-- [ ] Script
+- [x] Presentation
+- [x] Demos
+- [x] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### lazy - loading
 - [x] Started
 - [x] Outline
 - [ ] Presentation
 - [x] Demos
 - [ ] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### loading indicators
 - [x] Started
 - [x] Outline
 - [ ] Presentation
 - [ ] Demos
 - [ ] Script
+- [ ] Recorded
+- [ ] Resources sent
 ### script loading
 - [x] Started
 - [x] Outline
@@ -57,3 +71,5 @@
 - [ ] Presentation
 - [ ] Demos
 - [ ] Script
+- [ ] Recorded
+- [ ] Resources sent
