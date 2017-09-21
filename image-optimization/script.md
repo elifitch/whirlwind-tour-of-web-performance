@@ -30,16 +30,14 @@ On to gifs!  Everybody loves gifs!  Gifs make the internet a fun pleasant hilari
 ## Browser
 
 [[Go to https://giphy.com/gifs/mashable-l3q2K5jinAlChoCLS (in firefox?); make sure caching is enabled]]
-Here we are on giphy.com, looking at a gif of a perplexed person.   Lets inspect this gif here and see what we have.
+Here we are on giphy.com,  I promise when we're done here, your reaction is going to be just like this persons.   Lets inspect this gif here and see what we have.
 
 [[inspect]]
 
 So there *IS* a gif present, but what's this?  The gif's opacity is set to zero.  Lets remove it from the DOM and see what happens.
 
 [[Delete it]]
-Well, there's no change at all.  Lets Undo that and try removing this video instead.
-[[undo, remove vid]]  
-Well I guess it turns out we were really looking at this mp4 the whole time.  Hopping over to the network tab, we can see what's going on here.
+Well, there's no change at all.  I guess it turns out we were really looking at this mp4 the whole time.  Hopping over to the network tab, we can see what's going on here.
 
 [[GO TO NETWORK TAB]]
 
@@ -93,18 +91,18 @@ The syntax for how this works isn't super complicated. You define an image eleme
 With the two images combined, we get something that looks like this.  Nice clean edges, perfectly normal transparency.  If I saw this in the wild, I'd just assume it was a PNG, but we get all the filesize savings of using JPGs instead.  It's a really elegant solution that gives us the best of both worlds.
 
 ## JPNG
-We don't have to do this mask creation manually, a very skilled developer named Stephen Shaw made a tool called JPNG.svg that will do all this work for us.  Lets take a peek of how it works
+We don't have to do this mask creation manually, a very skilled developer named Stephen Shaw made a tool called JPNG.svg that will do all this work for us.  Lets take a peek at how it works
 
 [[Browser: https://codepen.io/shshaw/full/LVKEdv]]
-Here's JPNG.svg on codepen, I'll include a link to it in the course notes.  Lets try it out.  The default quality level of 60 for the main image and 50 for the mask works well for the image we're going to use so we can leave it alone. Now I'm going to upload this very high resolution 1800x1800px, 1.4 megabyte PNG.
+Here's JPNG.svg on codepen. You'll be able to find a link to it in the course notes.  The default quality level of 60 for the main image and 50 for the mask works well for the image we're going to use so we can leave it alone. Now I'm going to upload this very high resolution 1800x1800px, 1.4 megabyte PNG.
 [[upload, wait for it to finish]]
-And here's our result. Veeeeery nice. Effectively a transparent JPG, the holy grail of image types, and it's just 132kb, more than 10 times smaller than the equivalent PNG.  If you don't want to use the JPNG.svg interface here, I created an NPM module that takes PNGs and cranks out JPNGs, making it easy to integrate into your build chain.  I'll put a link to that library in the course notes.
+And here's our result. Veeeeery nice. Effectively a transparent JPG, the holy grail of image types, and it's just 132kb, more than 10 times smaller than the equivalent PNG.  If you don't want to use the JPNG.svg interface here, I created an NPM module that takes PNGs and cranks out JPNGs, making it easy to integrate into your build chain.  I'll put a link to that library in the course notes as well.
 
 ## Automated Optimizers
 This brings us to the matter of automated image optimization.  There are a million options out there and it's easy to be overwhelmed by choice.  I can't make that choice for you, but I can state my preferences.  I am a big fan of the imagemin suite, which consists of a core module and an ecosystem of specific image minifiers to be used as plugins.  Folks have also already integrated it with gulp, grunt, webpack, brunch and other build systems and task runners.  One thing to keep in mind is that many image optimization options use lossless minifiers by default.  While we can sometimes get satisfactory gains from lossless optimization, the improvements we can get from lossy optimizations can be much greater, while still being visually imperceptible to the lossless version.  All the specific optimizers I've listed here are lossy.  They require a little more calibration, but offer exceptional filesize savings.
 
 ## Remember
-I know I threw a lot at you in this session, but just remember a few key things.  Knowing when to reach for each each image format is even more important than a robust automated image optimization build system.  BUT When it comes to automated optimizers, go with lossy optimizers over lossless optimizers because of the greater filesize savings.  Remember to use SVGs for icons, illustration or specialized interactive content.  Use MP4s instead of gifs wherever possible.  Instead of PNGs, use JPNG.svg to make masked JPGs inside SVGs. And lean on moderate quality JPGs for everything else.
+I know I threw a lot at you in this session, but just remember a few key things.  Knowing when to reach for each image format is even more important than a robust automated image minificiation system.  BUT When it comes to automated optimizers, go with lossy minifiers over lossless minifiers because of the greater filesize savings.  Remember to use SVGs for icons, illustration or specialized interactive content.  Use MP4s instead of gifs wherever possible.  Instead of PNGs, use JPNG.svg to make masked JPGs inside SVGs. And lean on moderate quality JPGs for everything else.
 
 
 
