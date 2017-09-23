@@ -16,6 +16,12 @@
 
 When testing off canvas, show how this anim looks fine, until u go into the performance tab and slow down the CPU then it goes to shit. the translate anim stays fine. Degrading cpu can be a good test of how your shit will look on older machines, mobile devices
 
+d
+
+
+
+DEMO fixing https://developers.google.com/web/fundamentals/performance/rendering/ scroll issues with a slowed down cpu
+
 
 
 ////////////////////////////

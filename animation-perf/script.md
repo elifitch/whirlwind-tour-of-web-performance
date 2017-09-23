@@ -27,12 +27,25 @@ This step usually takes longer than painting and compositing, sometimes signific
 Generally though, try to avoid layout.  Its an expensive, a performance term for "time consuming", operation for the browser, and there are ways to use non-layout triggering CSS properties instead, to sidestep all these problems.  Lets take a look at these no-no, layout CSS properties we should steer clear of.
 
 ## Layout props
+Because Layout is best thought about as a spacial operation, it's easy to remember that CSS properties that trigger layout are spacial properties.  Animating CSS properties that change an object's size and position with respect to other elements cause layout.  The good news is a lot of these properties have easy alternatives.  Instead of animating top bottom left or right, you can use translate.  Instead of animating width and height, you can use scale.
 
+## Paint
+Painting, also called rasterization if you want to be more precise, is a dual step that creates a series of draw calls, and then draws the elements into a bitmap image in memory.  I know that sounds a little strange to think of what you see in a browser as a series of images, but just like a movie cut into frames, it's exactly the same with web browsers.  The browser typically doesn't just draw one image, it cuts the screen up into layers, just like you might see in photoshop.
 
-Because Layout is best thought about as a spacial operation, it's easy to remember that CSS properties that trigger layout are spacial properties.  animating CSS properties that change an object's size and position with respect to other elements cause layout.
+Paint is generally a good deal faster than layout, but not necessarily.  Just like how the speed of layout is directly affected by the size of the dom, the speed of paint is affected by the size of paint areas.  The paint area is determined by the size of the screen, and the size of a region you're asking the browser to repaint.  For example, it's much faster to repaint a small element than a large one, and it's much faster to repaint an element on a low resolution display than on a high resolution display.
 
+Think of paint as being primarily concerned with pixels.  The more pixels you want to repaint, the longer it will take.
 
+## Paint props
+So what CSS properties then trigger a repaint?  Well, generally anything that changes the appearance of an element.  There are some obvious ones like color and background, but beware of fixed elements on a page, those cause repaints whenever you scroll and can degrade scrolling performance.
 
+## https://codepen.io/elifitch/debug/MEbeog
+Here we've got a page that has a fixed background behind this text.  Lets go into dev tools and turn on "show paint flashing".
+[[turn on]]
+See how the whole page is flashing, that means that the whole page is repainting over and over again as we scroll.  This is because rather than just moving the browsers viewport up and down over existing bitmaps, the position of the text on top of the image has changed, meaning that the browser has to repaint the bitmaps and send them off to the GPU again, every frame.  This is a bad thing, and part of the reason why you used to see so many parallax sites with poor performance.  Lets turn off the fixed background and see what happens.
+[[turn off fixed bg]]
+voila, no more full page paints.
+ 
 
 
 
