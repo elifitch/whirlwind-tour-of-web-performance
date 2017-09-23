@@ -32,10 +32,17 @@ https://addyosmani.com/blog/devtools-visually-re-engineering-css-for-faster-pain
 
 https://addyosmani.com/blog/jank-busting-with-daft-punk/
 
+Paul lewis fixing scrolling perf
 https://www.youtube.com/watch?v=QU1JAW5LRKU
 
+facebook scrolling
+https://youtu.be/3-WYu_p5rdU?t=2151
 
+Deep dive on GPU compositing
+https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/
 
+css triggers
+https://csstriggers.com/
 
 
 
