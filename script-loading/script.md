@@ -73,3 +73,4 @@ So what does this tell us?  Async is acceptable for modularized scripts that don
 * HTML parsing: http://arvindr21.github.io/howBrowserWorks/#/18
 * Defer > async: https://calendar.perfplanet.com/2016/prefer-defer-over-async/
 * async vs defer: http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
+* MAYBE MAYBE MAYBE READ THIS FIRST BEFORE INCLUDING https://varvy.com/pagespeed/defer-loading-javascript.html
