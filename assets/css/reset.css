@@ -27,3 +27,4 @@ footer, header, hgroup, menu, nav, section, small {
 blockquote:before, blockquote:after, q:before, q:after {
   content: '';
   content: none;
+}
