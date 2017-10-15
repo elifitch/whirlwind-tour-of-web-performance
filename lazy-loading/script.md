@@ -1,10 +1,10 @@
 # Lazy Loading
 
 ## Intro
-Lazyloading is the art of asynchronously loading content, assets, or anything else under the sun, after your page has already loaded.  This allows us to get the user onto the page as quickly as possible, and lets us kick the can down the road with respect to ancillary stuff.  The most common use case for lazyloading is to asynchronously load media, like images, after the page loads its main text content.  However, we can also lazyload the entire page after showing a minimal loading screen, and use it to create UI patterns like infinite scrolling.
+If there's one mantra of web performance, it's this: "get users into content as fast as possible".  In pursuit of that goal, one of our most powerful tools is just to load nothing at all, deferring everything that isn't primary content until just before we need it, in other words, lazy loading.
 
-* Lazyloading images
-* Deferring all secondary content
+## Lazyload images
+One of, if not THE, most common use of lazyloading is with images.  Image represent most of the kilobytes of the average webpage, so if you can defer all or most of the images, you can get 
 
 ## Lazyload images
 Lazyloading images is in many cases the most impactful quick win applying this technique can give us. Images are often the largest portion of assets to be loaded on a page, so putting off loading them until a user is on the page can offer a significant speedup [[data here??]]. There are plenty of libraries that will do this for you, and many provide lots of helpful features on top of the basics.  For this example we're going to build our own lazyloading micro library from scratch to better understand what's happening under the hood.
