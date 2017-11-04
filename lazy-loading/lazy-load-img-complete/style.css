@@ -1,0 +1,92 @@
+html {
+	font-family: 'Futura', 'Helvetica', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+body {
+	margin: 0;
+}
+
+.main {
+	max-width: 1200px;
+	margin: 0 auto;
+	font-size: 2em;
+}
+p, img {
+	margin-bottom: 1em;
+	margin-top: 0;
+	width: 100%;
+}
+p:last-child, img:last-child {
+	margin-bottom: 0;
+}
+
+img:not([src]) {
+    visibility: hidden;
+    margin-bottom: 0;
+}
+
+.header {
+	background-color: purple;
+	padding: 1rem;
+	color: #fff;
+	font-size: 0.75em;
+}
+
+.hero {
+	/*height: 0;*/
+	/*padding-bottom: 35%;*/
+	height: 40vh;
+	background-image: linear-gradient(30deg, lightblue, pink);
+	font-size: 2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	margin-bottom: 0.25em;
+}
+
+.ancillary {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 1em;
+	position: relative;
+}
+.ancillary__item {
+	width: 100%;
+	font-size: 0.5em;
+}
+.ancillary__image {
+	font-size: 100px;
+	text-align: center;
+}
+.ancillary__description {
+
+}
+
+.opacity-0 {
+	opacity: 0;
+}
+.opacity-1 {
+	opacity: 1;
+}
+.fade {
+	transition: 0.3s opacity;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
