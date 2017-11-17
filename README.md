@@ -4,9 +4,9 @@
 ### Animation-Perf
 - [x] Started
 - [x] Outline
-- [ ] Presentation
+- [x] Presentation
 - [x] Demos
-- [ ] Script
+- [x] Script
 - [ ] Recorded
 - [ ] Resources sent
 ### Code Minification
@@ -18,11 +18,11 @@
 - [ ] Recorded
 - [ ] Resources sent
 ### Critical Rendering
-- [ ] Started
-- [ ] Outline
-- [ ] Presentation
-- [ ] Demos
-- [ ] Script
+- [x] Started
+- [x] Outline
+- [x] Presentation
+- [x] Demos
+- [x] Script
 - [ ] Recorded
 - [ ] Resources sent
 ### Font-Loading
@@ -44,9 +44,9 @@
 ### lazy - loading
 - [x] Started
 - [x] Outline
-- [ ] Presentation
+- [x] Presentation
 - [x] Demos
-- [ ] Script
+- [x] Script
 - [ ] Recorded
 - [ ] Resources sent
 ### loading indicators
