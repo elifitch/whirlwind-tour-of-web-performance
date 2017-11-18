@@ -30,7 +30,7 @@ Refreshing the browser, we can see our images are gone. Good!  That means the br
 [lazyload.js]
 First thing we'll need to do is get our images and assign them to a variable.
 [[`const targets = document.querySelectorAll('img[data-src]');`]]
-Next we'll make a function to take the an element's data-src attribute and create a source attribute for it.
+Next we'll make a function to take the an element's data-src attribute and create a source attribute for it.  This function would also be the place to add a class to an image to animate or fade it into view, or perform other onload tasks.
 ```
 function lazyloadImg(el) {
   el.src = el.getAttribute('data-src');
@@ -65,13 +65,85 @@ Finally lets call this function, and head back to the browser to see if we get a
 `createLazyLoadObserver()`
 
 [Browser]
-Scrolling down here, we get some "hi there" messages printed in the console, so our observer is wired up and working.  Lets go back to our javascript and call something more interesting than a console.log
+Scrolling down here, we get some "hi there" messages printed in the console, so our observer is wired up and working.  Lets go back to our javascript and call something more interesting than a console.log.
 
 [lazyload.js]
+The function we pass as an argument to the intersection observer constructor by default gets called every time an observed element enters or leaves the viewport.  That means that we need to make a funciton that does a little logic to make sure we load images as the ENTER the viewport, not as they leave.
+```
+function lazyloadManager(entries) {
+  entries.forEach(entry => {
+    if (entry.intersectionRatio > 0) {
+      lazyloadImg(entry.target)
+    }
+  })
+}
+```
+intersectionratio represents how much percent the image is within the viewport in a range from 1 to zero.  Since our observer by default only calls this function when an item enters or leaves, if intersectionratio is above zero, we can be sure the element is on its way into the viewport.  It'll get called again with an intersection ratio value of 0 just as it leaves.  We can add an option to the intersection observer constructor that lets us specify an offset, which we'll definitely want to do.
+```
+const observer = new IntersectionObserver(lazyloadManager, {
+  rootMargin: '20%'
+});
+```
+This means that instead of firing our function just as the image peeks into the viewport, it'll fire our lazyload when the item is 20% of the viewport away.  This gives us a little buffer and decreases the chance that a user will see images pop in if they scroll quickly.  Lets head back to chrome and see if this works.
 
+[browser]
+Eureka, it's working!  We can confirm in the network tab that the images are popping in as we scroll.
 
+[lazyload.js]
+It's pretty cool that we were able to get basic lazyloading up and running in [[[20]]] lines of javascript, and the outrageously small implementation here is why its sometimes worth it to write your own solution to problems like this instead of grabbing something off the shelf.  However, we're not quiiiite done yet.  As of time of recording, intersection observer is supported the last few versions of chrome, and the last two versions of firefox and edge, but outside those browsers, support is a little sparse.  Definitely growing, but still sparse.  Lets bring in a polyfill to make sure users on older browsers aren't left out in the cold.
 
+[https://github.com/que-etc/intersection-observer-polyfill]
+For this we'll use the official W3C intersection observer polyfill.  I'll have the link to it in the course notes, so don't worry about scrambling to write down the URL.
 
+[polyfill]
+I've got it saved down to the project here.
+
+[lazyload.js]
+Lets write a little bit of JS to conditionally load the polyfill for users that need it, and then not suck up any bandwidth & JS parsing time for users with modern browsers.
+```
+if (!('IntersectionObserver' in window)) {
+  
+} else {
+  createLazyLoadObserver();
+}
+[DELETE createLazyLoadObserver(); FROM BOTTOM]
+```
+This creates a conditional that says, if intersection observer is not available on the window, if it's not supported, do something, and if it is supported, call the function we've been using up to this point.  Now we need to write a function that will fetch and load our polyfill on demand.
+```
+function loadScript(src, done) {
+  var js = document.createElement('script');
+  js.src = src;
+  js.onload = done;
+  js.onerror = function() {
+    console.error('Failed to load script ' + src)
+  };
+  document.head.appendChild(js);
+}
+//...
+if (!('IntersectionObserver' in window)) {
+  loadScript('interesection-observer-polyfill', createLazyLoadObserver)
+}
+```
+This function creates a script element, sets the source to our polyfill, and then adds it to the head. Once that script is done loading, it'll use the polyfill to execute our existing intersection observer code just the same as if it were natively supported.
+
+There's just one small remaining edge case we haven't handled yet.  Lets go back over to the browser and see what I mean.
+
+[browser]
+Everything's working, images are lazyloading just fine, but what happens if I turn off javascript?
+[devtools -> settings -> debugger -> disable JS]
+Welllllllp that's not good.  Because we're setting our image src attributes in javascript, a user without JS enabled will get a blank page!  Luckily there's an extremely straightforward way to fix this.
+
+[index.html]
+There's a seldom used HTML element, the noscript tag, which instructs the browser to only render its contents if javascript is disabled.  We'll just wrap a standard image tag in a noscript tag for each image.
+[[noscript tags]]
+
+[browser]
+And voila, we have our images back! 
+
+#TLDR
+We've got a solution here that does exactly what we need, supports modern and legacy browsers, supports users with disabled JS, and we accomplish this with less than 40 lines of unpolyfilled javascript.  It would be super easy to extend what we've built to load, play and pause video, bring in extra content on demand, or enable a commenting UI at the bottom of the page.  And it wouldn't take a lot of code to get there.
+
+Implementing lazyloading is so quick and easy nowadays that it's definitely worth thinking twice before grabbing a 3rd party library, when you can build your own teensy tiny micro library that does exactly what you need and nothing more, saving kilobytes both coming and going.
 
 ------------------------------
 
