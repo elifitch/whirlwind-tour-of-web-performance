@@ -52,7 +52,6 @@ p:last-child, img:last-child {
 .page-content {
   padding: 1rem;
   background: #fff;
-  height: calc(100vh - 5.4rem);
 }
 
 .off-canvas {
@@ -78,4 +77,9 @@ p:last-child, img:last-child {
 
 .off-canvas-open .main {
   left: 400px;
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
