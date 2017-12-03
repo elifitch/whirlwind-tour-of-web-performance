@@ -1,10 +1,10 @@
 # Lazy Loading
 
 ## Intro
-If there's one mantra of web performance, it's this: "get users into content as fast as possible".  In pursuit of that goal, one of our most powerful tools is just to load nothing at all, deferring everything that isn't primary content until just before we need it, in other words, lazy loading.
+If there's one mantra of web performance, it's this: "get users into content as fast as possible".  In pursuit of that goal, one of our most powerful tools is loading as little as possible up front, deferring everything that isn't primary content until just before we need it, in other words, lazy loading.
 
 ## Lazyload images
-One of, if not THE, most common use of lazyloading is with images.  Image represent most of the kilobytes of the average webpage, so if you can defer all or most of the images, you can slice potentially hundreds of KB off your initial page weight.  Especially when images are outside of the viewport as the page loads, or "below the fold" so to speak, there's just no reason NOT to defer loading those images until just before they enter the viewport.  Using lazyloading on images is in many cases the most impactful quick win applying this technique can give us.
+One of, if not THE, most common use of lazyloading is with images.  Images represent most of the kilobytes of the average webpage, so if you can defer all or most of the images, you can slice potentially hundreds of KB off your initial page weight.  Especially when images are outside of the viewport as the page loads, or "below the fold" so to speak, there's just no reason NOT to defer loading those images until just before they enter the viewport.  Using lazyloading on images is in many cases the most impactful quick win applying this technique can give us.
 
 ## Lazyload images
 There are plenty of libraries that will lazyload images for you, and many provide lots of helpful features on top of the basics.  However, many of them have a kitchen sink approach, doing way more than we need, which bloats their file size, or have external dependencies like jQuery, angular or react, and don't rely on modern browser features like the intersection observer api.  For this example we're going to build our own lazyloading micro library from scratch to better understand what's happening under the hood, and to do the bare minimum of what we need with no extra fluff.
@@ -99,7 +99,7 @@ For this we'll use the official W3C intersection observer polyfill.  I'll have t
 I've got it saved down to the project here.
 
 [lazyload.js]
-Lets write a little bit of JS to conditionally load the polyfill for users that need it, and then not suck up any bandwidth & JS parsing time for users with modern browsers.
+Lets write a little bit of JS to conditionally load the polyfill for users that need it, while not sucking up any bandwidth & JS parsing time for users with modern browsers.
 ```
 if (!('IntersectionObserver' in window)) {
   
@@ -108,7 +108,7 @@ if (!('IntersectionObserver' in window)) {
 }
 [DELETE createLazyLoadObserver(); FROM BOTTOM]
 ```
-This creates a conditional that says, if intersection observer is not available on the window, if it's not supported, do something, and if it is supported, call the function we've been using up to this point.  Now we need to write a function that will fetch and load our polyfill on demand.
+This creates a conditional that says, if intersection observer is not available on the window, that is if it's not supported, do something, and if it is supported, call the function we've been using up to this point.  Now we need to write a function that will fetch and load our polyfill on demand.
 ```
 function loadScript(src, done) {
   var js = document.createElement('script');
@@ -117,14 +117,14 @@ function loadScript(src, done) {
   js.onerror = function() {
     console.error('Failed to load script ' + src)
   };
-  document.head.appendChild(js);
+  document.body.appendChild(js);
 }
 //...
 if (!('IntersectionObserver' in window)) {
   loadScript('interesection-observer-polyfill', createLazyLoadObserver)
 }
 ```
-This function creates a script element, sets the source to our polyfill, and then adds it to the head. Once that script is done loading, it'll use the polyfill to execute our existing intersection observer code just the same as if it were natively supported.
+This function creates a script element, sets the source to our polyfill, and then adds it to the body. Once that script is done loading, it'll use the polyfill to execute our existing intersection observer code just the same as if it were natively supported.
 
 There's just one small remaining edge case we haven't handled yet.  Lets go back over to the browser and see what I mean.
 
@@ -141,7 +141,7 @@ There's a seldom used HTML element, the noscript tag, which instructs the browse
 And voila, we have our images back! 
 
 #TLDR
-We've got a solution here that does exactly what we need, supports modern and legacy browsers, supports users with disabled JS, and we accomplish this with less than 40 lines of unpolyfilled javascript.  It would be super easy to extend what we've built to load, play and pause video, bring in extra content on demand, or enable a commenting UI at the bottom of the page.  And it wouldn't take a lot of code to get there.
+We've got a solution here that does exactly what we need, supports modern and legacy browsers, supports users with disabled JS, and we accomplish this with less than 40 lines of unpolyfilled javascript.  It would be super easy to extend what we've built to load, play and pause video, bring in extra content on demand, or trigger anything else based on scroll position, like loading commenting UI at the bottom of the page.  And it wouldn't take a lot of code to get there.
 
 Implementing lazyloading is so quick and easy nowadays that it's definitely worth thinking twice before grabbing a 3rd party library, when you can build your own teensy tiny micro library that does exactly what you need and nothing more, saving kilobytes both coming and going.
 
