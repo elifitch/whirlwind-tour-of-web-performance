@@ -1,13 +1,14 @@
 html {
 	font-family: 'Futura', 'Helvetica', sans-serif;
 	-webkit-font-smoothing: antialiased;
+	font-size: 12px;
 }
 body {
 	margin: 0;
 }
 
 .main {
-	max-width: 1200px;
+	max-width: 600px;
 	margin: 0 auto;
 	font-size: 2em;
 }
