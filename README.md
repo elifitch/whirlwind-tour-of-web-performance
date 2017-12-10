@@ -47,7 +47,7 @@
 - [x] Presentation
 - [x] Demos
 - [x] Script
-- [ ] Recorded
+- [x] Recorded
 - [ ] Resources sent
 ### loading indicators
 - [x] Started
@@ -65,6 +65,7 @@
 - [x] Script
 - [x] Recorded
 - [ ] Resources sent
+----------------------------------
 ### svg icons
 - [x] Started
 - [x] Outline
