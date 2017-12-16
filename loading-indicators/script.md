@@ -163,6 +163,45 @@ Now lets give the shimmer a bright background color so we can clearly see it, an
 Okay! So some definite problems, but we're getting somewhere.  The first is that we need to use overflow hidden on the post so you don't see our shimmer when it leaves the bounds of its parent. And of course, we need to change our fuchsia background into something usable.
 
 [[ CSS ]]
+[[
+  .post--skeleton {
+    position: relative;
+    overflow: hidden;
+  }
+]]
+Now that's out of the way, lets make our shimmer, you know, *actually* seem to shimmer.  We can do this with a gradient background that goes from transparent, to a translucent silvery color, back to transparent.
+[[
+  .post--skeleton:after {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.4), transparent);
+  }  
+]]
+Okay lets see how this looks.
+
+[[ BROWSER ]]
+Oooooh that's so much better!  Lets go back to our HTML and our demo javascript so we can see how this looks in practice, showing the skeleton screen and then popping in some content.
+
+[[ HTML ]]
+[[
+  data-post-avatar
+  data-post-author
+  data-post-date
+  data-post-body
+
+  copy 3x
+]]
+[[ JS ]]
+[[
+  // standardSpinner();
+  skeletonScreen();
+]]
+
+[[ BROWSER ]]
+Okay, moment of truth time, lets refresh and see how it looks in a scenario that more closely mirrors the real world.
+[[
+  refresh
+]]
+Hey that looks really nice, and it took us only a few minutes!  More complex layouts will undoubtedly take more effort, but the CSS techniques I demoed should hopefully take you a long way even on the tricky stuff.
+
 
     
 

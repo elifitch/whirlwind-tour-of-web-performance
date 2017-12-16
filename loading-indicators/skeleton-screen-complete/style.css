@@ -96,21 +96,23 @@ body {
 
 
 /* SKELETON SCREEN STUFF BELOW */
-.post {
-  position: relative;
-  overflow: hidden;
-}
 .post--skeleton .post__avatar {
   background-color: #ddd;
 }
 .post--skeleton .post__author, .post--skeleton .post__date {
+  height: 1em;
   background: #ddd;
   width: 100%;
 }
 .post--skeleton .post__body {
   height: 8em;
-  background-image: linear-gradient(0deg, #ddd 0%, #ddd 66%, transparent 66%, transparent 100%);
-  background-size: 100px 2em;
+  background-image: linear-gradient(to bottom, #ddd 0%, #ddd 66%, transparent 66%, transparent 100%);
+  background-size: 6.2em;
+}
+
+.post--skeleton {
+  position: relative;
+  overflow: hidden;
 }
 
 .post--skeleton:after {
@@ -130,6 +132,6 @@ body {
     transform: translateX(-100%);
   }
   100% {
-    transform: translateX(calc(400px + 100%));
+    transform: translateX(400px);
   }
 }
