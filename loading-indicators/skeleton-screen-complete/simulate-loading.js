@@ -30,7 +30,7 @@ function skeletonScreen() {
 }
 
 // standardSpinner();
-// skeletonScreen();
+skeletonScreen();
 
 const postData = [
   {
