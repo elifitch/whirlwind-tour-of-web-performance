@@ -7,21 +7,29 @@ Loading isn't always done when the page arrives.  Especially in API driven appli
 I could talk for hours about granular perceived performance techniques, and in fact I have before, but we can gloss over the nitty gritty specifics and focus on this one general truth: time seems to pass more quickly for users when they are mentally engaged with the actions they're performing. There are innumerable solutions to the problems of keeping users engaged, but today we'll focus in on two: loading animations and skeleton screens.
 
 ## Loading anims
-------------------------------------
-------------------------------------
-------------------------------------
-------------------------------------
-------------------------------------
-------------------------------------
+There are two main kinds of loading animations. Spinners and progress bars. Spinners don't necessarily need to actually spin, but refer to a type of infinitely repeating animation that has no definite beginning or end.  Progress bars, similarly, don't necessarily need to be bars, but refer to loading animations that have a discrete empty and full state.
+
+## Behavior vs appearance
+The bar on the left here may look like a progress bar, but it doesn't fill up. It doesn't have a beginning or end. It's an endlessly looping animation, and thus, despite its distinct "bar" shape, it's a spinner.  This progress bar on the right on the other hand, is round, like a lot of spinners, but it's a progress bar because it has a beginning and end.  It has the ability to let the user know, in relative terms, how long they've been waiting and how much longer they have left to go.  Regardless of size or shape, spinners and progress bars are both valuable tools, but are good for different things.
+
+## Spinner bps
+The best thing about spinners, and I'd bet the main reason they're much more common than progress bars, is that they're easy to implement.  Spinners don't need to know anything about how long a task is probably going to take, they don't need to receive updates from a server to be accurate, because they don't try to be accurate about anything.  They only tell a user "hey, you're waiting now, enjoy the show", they DONT tell a user "enjoy the show, which will last for about 4 more seconds".  Their simple on/off nature makes spinners very tempting to be used everywhere, even longer waits of more than two seconds or so, where a progress bar becomes more appropriate.  The longer a load is likely to take, the more important it is to let users know about how long they're going to be waiting for, which spinners by their very nature cannot do.  That's when you want to reach for a progress bar.
+
+## Proggy uses
+There are two main types of progress bars: "real" progress bars, which receive periodic updates from a server and truly accurately reflect how long a load is going to take, and "fake" progress bars.  Fake progress bars are just an animation with a fixed duration, that you're pretty sure is a bit longer than the anticipated loading time, that go from 0 to 95 percent or so, and then animate to 100% when they're done.  Most progress bars you encounter on the internet are fake.  Ever seen a progress bar that's filled to almost completion, and then just sat there, hanging out at nearly-complete for a few seconds, before zipping to completion? I bet you have.  That's the downside of fake progress bars.  If the load takes longer than whatever their animation duration is set at, it'll lead to a bad experience.  The upside is that they give users a sense of certainty about how long they've been waiting and how long they've got left to go.  They're great for any load longer than 2 seconds but become critical with any wait longer than 4 seconds.  Try to accompany your progress bars with some explanatory text if the wait is longer than 6 seconds or so, studies have shown that makes time seem to pass more quickly.
+
+Generally try to implement progress bars in important areas where you experience high levels of user attrition.  Whenever possible, make the effort to get your progress bars periodic updates from a server to make them real.  Whenever you *can't* make them real, you can dynamically set the animation duration by measuring the user's connection speed, the size of their upload or request, or any other factor that you can use to help make your progress bar more accurate on the fly.
+
+Both spinners and progress bars are vital when making asynchronous requests: uploading images, fetching new content, buffering music, that type of thing...
 
 ## Skeleton screens [image of facebook skeleton screen]
-A skeleton screen is showing a rough outline of the final page layout before the content for that page has loaded.  This serves two purposes.  It gets the users into some content, something new for them to see and absorb, more quickly than waiting for the final content.  It also guides their attention into where the content will eventually populate.  Skeleton screens make the final loading state less jarring by providing some mental context for what the page will look like and where final content will end up.
+But when it comes to loading content asynchronously the first time you load a page, skeleton screens are a great choice. A skeleton screen is showing a rough outline of the final page layout before the content for that page has loaded.  This serves two purposes.  It gets the users into some sort content, something new for them to see and absorb, more quickly than waiting for the page to completely load.  It also guides their attention into where the content will eventually populate.  Skeleton screens make the final loading state less jarring by providing some mental context for what the page will look like and where final content will end up.  As shown in a 2017 study by Viget, a digital agency, skeleton screens work best with wait times of 2 seconds or less, and in contexts where users are familiar with the layout, like social networks and other daily-use apps.  So that's a great caveat to keep in mind.
 
 ## Skeleton screens [slack video]
-Slack has a great example of a skeleton screen, filling out the list items on the sidebar with animated placeholders, before replacing them with actual content once you've loaded the data for all your channels and messages.
+Slack has a great example of a skeleton screen, filling out the list items on the sidebar with animated placeholders, before replacing them with actual content once you've loaded the data for all your channels and messages.  And we're going to try to replicate this as closely as we can in a quick demo.
 
 ## Skeleton screens [TBD icon, maybe a browser, since it's a demo]
-There are several ways to create skeleton screens, and what seems like the most common way to do this is to create a separate DOM element for the skeleton screen, and then replace it with a different DOM element once content is loaded.  We're going to use a slightly more efficient technique to manage our transition, instead of replacing DOM elements wholesale, we'll change a single CSS class to trigger the transition.  Lets hop over to the browser and see what we're dealing with.
+There are several ways to create skeleton screens. What seems like the most common way to do this is to create a separate DOM element for the skeleton components, and then replace it with a different DOM element for loaded content.  We're going to use a slightly more efficient technique to manage our transition, instead of replacing DOM elements wholesale, we'll change a single CSS class to trigger the transition.  Lets hop over to the browser and see what we're dealing with.
 
 ## Skeleton screen demo
 [BROWSER]
@@ -202,16 +210,11 @@ Okay, moment of truth time, lets refresh and see how it looks in a scenario that
 ]]
 Hey that looks really nice, and it took us only a few minutes!  More complex layouts will undoubtedly take more effort, but the CSS techniques I demoed should hopefully take you a long way even on the tricky stuff.
 
+## conclusions
+Just to tie a bow on all this, remember that skeleton screens are super useful, but only on initial page loads, and only if the anticipated wait time is less than two seconds.  Feel free to use spinners for anticipated waits of up to two seconds, but any more than that, and you should consider using a progress bar.  More than six seconds? Tell users what their waiting for with some explanatory text.  A pro technique is to constantly keep an eye on the user's connection speed, and what exactly it is that they're requesting, and dynamically change whether you display a spinner or progress bar based on how long they're likely to wait.  Whether that's overkill for your usecase or not, having a general idea of how long users spend waiting is essential to choosing the right option for the experience you're building.
 
-    
 
 
-// animation
 
-## Loading animations
-## Spinners
-## Progress bars
-
-## don't abuse
-
-## Progress bar demo
+RESOURCES
+https://www.viget.com/articles/a-bone-to-pick-with-skeleton-screens
