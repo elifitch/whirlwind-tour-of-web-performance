@@ -7,10 +7,10 @@
 - [x] Presentation
 - [x] Demos
 - [x] Script
-- [ ] Recorded
+- [x] Recorded
 - [ ] Resources sent
 ### Code Minification
-- [ ] Started
+- [x] Started
 - [ ] Outline
 - [ ] Presentation
 - [ ] Demos
@@ -31,7 +31,7 @@
 - [x] Presentation
 - [x] Demos
 - [x] Script
-- [ ] Recorded
+- [x] Recorded
 - [ ] Resources sent
 ### Image-optimization
 - [x] Started
@@ -39,7 +39,7 @@
 - [x] Presentation
 - [x] Demos
 - [x] Script
-- [ ] Recorded
+- [x] Recorded
 - [ ] Resources sent
 ### lazy - loading
 - [x] Started
@@ -52,9 +52,9 @@
 ### loading indicators
 - [x] Started
 - [x] Outline
-- [ ] Presentation
-- [ ] Demos
-- [ ] Script
+- [x] Presentation
+- [x] Demos
+- [x] Script
 - [ ] Recorded
 - [ ] Resources sent
 ### script loading
