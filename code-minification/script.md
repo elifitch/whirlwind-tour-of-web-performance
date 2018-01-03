@@ -5,9 +5,6 @@ We always want to load a site as fast as possible, so naturally for us, less kil
 
 
 ## what minification is
-applies to all types of code
-javascript minification is usually most important
-CSS minification has a ceiling 
 So what exactly is minification anyways, and what about gzipping for that matter?  What are they, how are they similar and how are they different?  They serve the same goal, of sending less kilobytes down in a given request, but they're implemented quite differently.  Minification removes unneeded whitespace, semicolons, comments, and that type of thing.  It'll even rename variables to as few characters as possible.  Minification makes your code somewhere between hard and impossible to read, but it's still perfectly valid and usable code as far as the browser's code.  It's okay to not worry about the impact minification has on readilility since we'll be developing with unminified code, and only use minified code on production where speed is far more important than readability.  The minification process creates a new file, oftentimes you'll see it abbreviated with "min", like styles.min.css or app.min.js.
 
 ## Impact of minification (maybe do a few slides for this because of the narrative progression)
@@ -15,11 +12,25 @@ The impact of minfication varies widely depending on whether you're minifying HT
 
 ## minification for specific build systems
 So how do you actually do this?  I wouldn't expect you to go through and manually rename varialbes and delete semicolons and all that.  Minification is always an automated process, one that gets included in your build system of choice.  I'll provide links in the course notes to some minifiers for popular build systems, all of which have a wealth of tutorial resources to use when implementing them.  If you're not used to setting up a build process, minification can be a great first toe in the water.  In my experience it's been no more tricky than learning any other new javascript library, and the benefits are enormous, so there's plenty of good motivation there.
+[NOTES]
+https://github.com/terinjokes/gulp-uglify
+https://github.com/gruntjs/grunt-contrib-uglify
+https://github.com/webpack-contrib/uglifyjs-webpack-plugin
+CSS nano, used through postcss
+https://github.com/nDmitry/grunt-postcss
+https://github.com/postcss/gulp-postcss
+https://github.com/webpack-contrib/css-loader
 
 ## what gzip is
-Moving on from minification, lets talk about gzipping.  Gzipping works fundamentally different different way.  While minification is all about stripping out unused characters, outputting a new Javascript or css file or whatever, gzipping is a compression method that looks for repeating characters in a file and replaces any repeated character patterns with a pointer back to the first instance.  So, for example, imagine how many times in an HTML file you see the characters "left angle bracket d-i-v". Dozens and dozens of times.  All of those would be replaced with a reference to a single instance of those characters.  Julia evans put together an astonishing, stellar demo of how gzipping works by animating how it walks through a text file, in this case Edgar Allen Poe's the raven.  I'll go ahead and play it now so you can get a more expressive sense of how gzipping works.
+Moving on from minification, lets talk about gzipping.  Gzipping works fundamentally different different way.  While minification is all about stripping out unused characters, outputting a new Javascript or css file or whatever, gzipping is a compression method that looks for repeating characters in a file and replaces any repeated character patterns with a pointer back to the first instance.  So, for example, imagine how many times in an HTML file you see the characters "left angle bracket d-i-v". Dozens and dozens of times.  All of those would be replaced with a reference to a single instance of those characters.
+
+## Example
+Julia evans put together an astonishing, stellar demo of how gzipping works by animating how it walks through a text file, in this case Edgar Allen Poe's the raven.  I'll go ahead and play it now so you can get a more expressive sense of how gzipping works.
 [[show video]]
-Wow, I must've watched this video dozens of times but it never gets old.  Did you notice how as the video went along, it went quicker and quicker?  As the file gets longer, more and more text will be replaced. Gzipping has more drastic benefits the larger a file is and the more repeatable text there is in a file.  That said, it almost always yields more impressive file size savings than minification.  How much better?  About *five times better*.  Minifying is important. Gzipping is essential.  That said, you can and absolutely should use minification and gzipping together.  They are not mutually exclusive and are two solutions to basically the same problem.
+Wow, I must've watched this video dozens of times but it never gets old.  Did you notice how as the video went along, it went quicker and quicker?  As the file gets longer, more and more text will be replaced. Gzipping has more drastic benefits the larger a file is and the more repeatable text there is in a file.
+
+## Impact
+That said, it almost always yields more impressive file size savings than minification.  How much better?  About *five times better*.  Minifying is important. Gzipping is essential.  That said, you can and absolutely should use minification and gzipping together.  They are not mutually exclusive and are two solutions to basically the same problem.
 
 ## how to set gzipping up
 Whereas minification is set up as a build process, gzipping is a little more murky and even more variable based on the situation. Gzipping is set up 100% server side, but it is available on most popular web servers, including nginx and apache, and it's easy to get going if you're managing your web server yourself. For example, with Nginx, while it is a little more complex in practice, just enabling gzip is as simple as including a line in your configuration that reads "gzip on".  I'll include tutorials for how to enable gzipping on apache and nginx in the course notes.  If mucking around with server configuration isn't your thing, many static site hosting services such as github pages enable gzip compression by default.  Just make sure to check for this when you're looking for where to host a site.
