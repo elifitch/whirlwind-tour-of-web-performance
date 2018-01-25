@@ -106,6 +106,3 @@ https://www.smashingmagazine.com/2015/08/understanding-critical-css/
 Preloading
 https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
 https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf
-
-Base64
-https://varvy.com/tools/base64/
