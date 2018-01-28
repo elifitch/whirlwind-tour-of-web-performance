@@ -1,0 +1,85 @@
+html {
+	font-family: 'Futura', 'Helvetica', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+body {
+	margin: 0;
+}
+
+.main {
+	margin: 0 auto;
+  position: relative;
+  transition: all 1s;
+  left: 0;
+  box-shadow: -10px 0px 20px 0px rgba(0,0,0,0.5);
+}
+p, img {
+	margin-bottom: 1em;
+	margin-top: 0;
+}
+p:last-child, img:last-child {
+	margin-bottom: 0;
+}
+.article-heading {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+
+.header {
+  background-color: purple;
+  padding: 1rem;
+  height: 5.4rem;
+  color: #fff;
+}
+
+.nav-toggle {
+    -webkit-appearance: none;
+    background-color: gray;
+    border: none;
+    font-family: "Pinopolis-Regular";
+    font-size: 1.5em;
+    white-space: nowrap;
+    padding: 0.5em 0.75em 0.35em 0.75em;
+    border-radius: 0.2em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+}
+.nav-toggle:focus {
+  outline: none;
+}
+
+.page-content {
+  padding: 1rem;
+  background: #fff;
+}
+
+.off-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  background-color: gray;
+  color: white;
+  z-index: -1;
+}
+.menu-item {
+  font-size: 2em;
+  text-align: center;
+  padding-top: 0.5em;
+  border-bottom: 2px solid white;
+  padding-bottom: 0.5em;
+}
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.off-canvas-open .main {
+  transform: translateX(400px);
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}

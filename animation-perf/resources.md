@@ -1,4 +1,10 @@
 ////////////////////////////
+Codepen Demo showing fixed background paint issues
+https://codepen.io/elifitch/debug/MEbeog
+
+Google render performance demo page
+https://developers.google.com/web/fundamentals/performance/rendering/
+
 Paul lewis' screencast fixing scrolling perf
 https://www.youtube.com/watch?v=QU1JAW5LRKU
 

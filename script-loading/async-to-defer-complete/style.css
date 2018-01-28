@@ -1,0 +1,36 @@
+.magical-alert-button {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    font-family: "Pinopolis-Regular";
+    font-size: 1.5em;
+    border: 0.1em solid #79B6FC;
+    white-space: nowrap;
+    padding: 0.5em 0.75em 0.35em 0.75em;
+    border-radius: 0.2em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+}
+.magical-alert-button:hover {
+	background-color: #79B6FC;
+	color: #fff;
+	cursor: pointer;
+}
+.magical-alert-button:active {
+	transform: translate(-50%, calc(-50% + 0.3em)) scale(0.96);
+}
+.magical-alert-button:focus {
+	outline: none;
+}
+
+.party-parrot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-100% - 1.9em));
+}
